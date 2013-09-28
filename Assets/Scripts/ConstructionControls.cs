@@ -31,10 +31,10 @@ public class ConstructionControls : MonoBehaviour {
 			camYaw += Mathf.PI / 6.0f;	
 		}
 		if(GUI.Button(new Rect(x+30, y, 30, 30), "^")) {
-			camPitch= Mathf.Max(camPitch - 0.1f, -Mathf.PI + 0.2f);
+			camPitch= Mathf.Max(camPitch - 0.1f, -Mathf.PI / 2 + 0.2f);
 		}
 		if(GUI.Button(new Rect(x+30, y + 60, 30, 30), "v")) {
-			camPitch= Mathf.Min(camPitch + 0.1f, Mathf.PI - 0.2f);
+			camPitch= Mathf.Min(camPitch + 0.1f, 0.2f);
 		}
 		if(GUI.Button(new Rect(x, y + 90, 60, 30), "go!")) {
 			Destroy(gameObject);

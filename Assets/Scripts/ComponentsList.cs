@@ -23,17 +23,6 @@ public class ComponentsList : MonoBehaviour {
 	}
 
 	void Update () {
-		if(selectedPiece != null) {
-			Vector3 offset = Input.mousePosition - spinMouseStart;
-			spinVelocity.x = offset.x / 20.0f;
-			spinVelocity.y = offset.y / 20.0f;
-			//selectedPiece.transform.RotateAround(Vector3.up, spinVelocity.x * Time.deltaTime);
-			selectedPiece.transform.RotateAround(selectedPiece.transform.forward, spinVelocity.y * Time.deltaTime);
-			
-			if(Input.GetMouseButtonUp(0)) {
-				Deselect();
-			}
-		}
 		if(pieceToPlace) {
 			GameObject hitObject = null;
 			RaycastHit rhit = new RaycastHit();
@@ -43,24 +32,24 @@ public class ComponentsList : MonoBehaviour {
 				pieceToPlace.transform.rotation = Quaternion.LookRotation(rhit.normal);
 			}
 			
-			if(pieceToPlace.transform.position.x < 0) {
+			// Flip code
+			/*if(pieceToPlace.transform.position.x < 0) {
 				pieceToPlace.transform.localScale = new Vector3(-1, 1, 1);
 				//pieceToPlace.transform.RotateAround(pieceToPlace.transform.right, Mathf.PI);
 			}
 			else {
 				pieceToPlace.transform.localScale = Vector3.one;
 			}
+			*/
 			
 			if(Input.GetMouseButtonDown(0)) {
 				if(hitObject != null) {
 					pieceToPlace.transform.parent = hitObject.transform;
-				} else {
-					Debug.LogError("NO OBJECT CLICKED ON, DUMBASS");
+					foreach(Collider mc in pieceToPlace.GetComponentsInChildren<Collider>()) {
+						mc.gameObject.layer = 8;
+					}
+					pieceToPlace = null;
 				}
-				foreach(Collider mc in pieceToPlace.GetComponentsInChildren<Collider>()) {
-					mc.gameObject.layer = 8;
-				}
-				pieceToPlace = null;
 			}
 		}
 		else {
@@ -74,6 +63,21 @@ public class ComponentsList : MonoBehaviour {
 				spinning = true;
 			}
 		}
+		if(selectedPiece != null) {
+			
+			if(Input.GetMouseButton(0) && GUIUtility.hotControl == 0) {
+				
+				Vector3 offset = Input.mousePosition - spinMouseStart;
+				spinVelocity.x = offset.x / 20.0f;
+				spinVelocity.y = offset.y / 20.0f;
+				//selectedPiece.transform.RotateAround(Vector3.up, spinVelocity.x * Time.deltaTime);
+				selectedPiece.transform.RotateAround(selectedPiece.transform.forward, spinVelocity.y * Time.deltaTime);
+			}
+			else {
+				spinVelocity.x = 0;
+				spinVelocity.y = 0;
+			}
+		}		
 	}
 	
 	void Deselect() {
@@ -100,9 +104,17 @@ public class ComponentsList : MonoBehaviour {
 		int y = 0;
 		foreach(GameObject g in components) {
 			if(GUI.Button(new Rect(0, y, 200, 32), g.name)) {
+				Deselect();
 				pieceToPlace = (GameObject)GameObject.Instantiate(g);	
 			}
 			y += 32;
+		}
+		
+		if(selectedPiece) {
+			if(GUI.Button(new Rect(250, 20, 120, 30), "Delete")) {
+				Destroy(selectedPiece);
+				selectedPiece = null;
+			}
 		}
 	}
 	

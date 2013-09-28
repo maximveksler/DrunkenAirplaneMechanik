@@ -13,7 +13,6 @@ public class PlayerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		//Camera.main.transform.position = transform.position + transform.TransformPoint(new Vector3(0, 10, -20));
 		Camera.main.transform.LookAt(transform);
 		rigidbody.useGravity = true;
 		rigidbody.AddForce(new Vector3(0, 0, 1));
