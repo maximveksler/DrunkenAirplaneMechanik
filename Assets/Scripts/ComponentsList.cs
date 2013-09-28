@@ -11,8 +11,10 @@ public class ComponentsList : MonoBehaviour {
 	public GameObject airplane;
 	
 	List<Material> selectedOldMaterials = new List<Material>();
+	List<Material> placementOldMaterials = new List<Material>();
 	
 	public Material selectedMat;
+	public Material placementMat;
 	
 	Vector3 spinMouseStart;
 	bool spinning = false;
@@ -48,6 +50,11 @@ public class ComponentsList : MonoBehaviour {
 					foreach(Collider mc in pieceToPlace.GetComponentsInChildren<Collider>()) {
 						mc.gameObject.layer = 8;
 					}
+					int i= 0;
+					foreach(Renderer r in pieceToPlace.GetComponentsInChildren<Renderer>()) {
+						r.sharedMaterial = placementOldMaterials[i];
+						i++;
+					}					
 					pieceToPlace = null;
 				}
 			}
@@ -106,7 +113,15 @@ public class ComponentsList : MonoBehaviour {
 			foreach(GameObject g in components) {
 				if(GUI.Button(new Rect(0, y, 200, 32), g.name)) {
 					Deselect();
-					pieceToPlace = (GameObject)GameObject.Instantiate(g);	
+					pieceToPlace = (GameObject)GameObject.Instantiate(g);
+					placementOldMaterials = new List<Material>();
+					foreach(Renderer r in pieceToPlace.GetComponentsInChildren<Renderer>()) {
+						placementOldMaterials.Add(r.sharedMaterial);	
+						Material nm = new Material(placementMat);
+						nm.mainTexture = r.sharedMaterial.mainTexture;
+						nm.color = new Color(r.sharedMaterial.color.r,r.sharedMaterial.color.g,r.sharedMaterial.color.b,0.5f);
+						r.sharedMaterial = nm;
+					}
 				}
 				y += 32;
 			}
