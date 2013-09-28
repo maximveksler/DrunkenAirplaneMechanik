@@ -102,14 +102,16 @@ public class ComponentsList : MonoBehaviour {
 	
 	void OnGUI() {
 		int y = 0;
-		foreach(GameObject g in components) {
-			if(GUI.Button(new Rect(0, y, 200, 32), g.name)) {
-				Deselect();
-				pieceToPlace = (GameObject)GameObject.Instantiate(g);	
+		if(!pieceToPlace) {
+			foreach(GameObject g in components) {
+				if(GUI.Button(new Rect(0, y, 200, 32), g.name)) {
+					Deselect();
+					pieceToPlace = (GameObject)GameObject.Instantiate(g);	
+				}
+				y += 32;
 			}
-			y += 32;
 		}
-		
+			
 		if(selectedPiece) {
 			if(GUI.Button(new Rect(250, 20, 120, 30), "Delete")) {
 				Destroy(selectedPiece);

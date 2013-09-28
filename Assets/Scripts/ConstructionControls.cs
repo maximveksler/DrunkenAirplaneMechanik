@@ -7,9 +7,12 @@ public class ConstructionControls : MonoBehaviour {
 	float camPitch = -.5f;
 	float camDistance = 10;
 	
+	public Texture2D cursorImage;
+	public Texture2D cursorImageClick;
+	
 	// Use this for initialization
 	void Start () {
-	
+		Screen.showCursor = false;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +45,14 @@ public class ConstructionControls : MonoBehaviour {
 			GameObject.Find("Airplane").rigidbody.AddForce(new Vector3(0, 0, 1000));
 			Core.SimulationMode = true;
 			Application.LoadLevel("simulator");
+		}
+		
+		GUI.depth = 0;
+		if(Input.GetMouseButton(0)) {
+			GUI.Label(new Rect(Input.mousePosition.x - 2,Screen.height - Input.mousePosition.y - 2,64,64),cursorImageClick);		
+		}
+		else {
+			GUI.Label(new Rect(Input.mousePosition.x - 2,Screen.height - Input.mousePosition.y - 2,64,64),cursorImage);		
 		}
 	}
 	
