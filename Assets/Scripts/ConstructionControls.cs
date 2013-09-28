@@ -40,6 +40,7 @@ public class ConstructionControls : MonoBehaviour {
 			Destroy(gameObject);
 			GameObject.Find("Airplane").AddComponent<PlayerControl>();
 			Core.SimulationMode = true;
+			Application.LoadLevel("simulator");
 		}
 	}
 }
