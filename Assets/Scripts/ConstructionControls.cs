@@ -4,7 +4,7 @@ using System.Collections;
 public class ConstructionControls : MonoBehaviour {
 	
 	float camYaw = 1;
-	float camPitch = .5f;
+	float camPitch = -.5f;
 	float camDistance = 10;
 	
 	// Use this for initialization
@@ -35,6 +35,11 @@ public class ConstructionControls : MonoBehaviour {
 		}
 		if(GUI.Button(new Rect(x+30, y + 60, 30, 30), "v")) {
 			camPitch= Mathf.Min(camPitch + 0.1f, Mathf.PI - 0.2f);
+		}
+		if(GUI.Button(new Rect(x, y + 90, 60, 30), "go!")) {
+			Destroy(gameObject);
+			GameObject.Find("Airplane").AddComponent<PlayerControl>();
+			Core.SimulationMode = true;
 		}
 	}
 }

@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Core : MonoBehaviour {
-
+	
+	public static bool SimulationMode = false;
+	
 	// Use this for initialization
 	void Start () {
 	
