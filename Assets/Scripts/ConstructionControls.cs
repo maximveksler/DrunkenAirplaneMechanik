@@ -57,9 +57,8 @@ public class ConstructionControls : MonoBehaviour {
 			camTargetPitch= Mathf.Min(camTargetPitch + 0.1f, 0.2f);
 		}
 		if(GUI.Button(new Rect(x, y + 90, 60, 30), "go!")) {
-			Destroy(gameObject);
-			GameObject.Find("Airplane").AddComponent<PlayerControl>();
-			GameObject.Find("Airplane").rigidbody.AddForce(new Vector3(0, 0, 1000));
+			GameObject airplane = GameObject.Find("Airplane");
+			DontDestroyOnLoad(airplane);
 			Core.SimulationMode = true;
 			Application.LoadLevel("simulator");
 		}

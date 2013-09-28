@@ -12,6 +12,6 @@ public class Wing : AirplaneComponent {
 		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
 		    combinedBounds.Encapsulate(r.bounds);
 		}		
-		GetAirplane().rigidbody.AddForceAtPosition(transform.up, combinedBounds.center);
+		GetAirplane().rigidbody.AddForceAtPosition(transform.up * lift, combinedBounds.center);
 	}
 }
