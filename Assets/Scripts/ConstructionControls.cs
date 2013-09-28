@@ -41,6 +41,7 @@ public class ConstructionControls : MonoBehaviour {
 			GameObject.Find("Airplane").AddComponent<PlayerControl>();
 			GameObject.Find("Airplane").rigidbody.AddForce(new Vector3(0, 0, 1000));
 			Core.SimulationMode = true;
+			Application.LoadLevel("simulator");
 		}
 	}
 	
