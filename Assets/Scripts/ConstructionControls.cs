@@ -39,7 +39,9 @@ public class ConstructionControls : MonoBehaviour {
 		if(GUI.Button(new Rect(x, y + 90, 60, 30), "go!")) {
 			Destroy(gameObject);
 			GameObject.Find("Airplane").AddComponent<PlayerControl>();
+			GameObject.Find("Airplane").rigidbody.AddForce(new Vector3(0, 0, 1000));
 			Core.SimulationMode = true;
 		}
 	}
+	
 }

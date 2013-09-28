@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Wing : AirplaneComponent {
 	
-	public float liftFactor = 0.1f;
+	public float liftFactor = 0.01f;
 	
 	protected override void SimUpdate() {
 		float speed = Vector3.Dot(GetAirplane().rigidbody.velocity, transform.right);
