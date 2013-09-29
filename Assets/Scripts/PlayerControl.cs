@@ -30,7 +30,9 @@ public class PlayerControl : MonoBehaviour
 			airplane.transform.eulerAngles = spawnPoint.transform.eulerAngles;
 			Camera.main.transform.parent = airplane.transform;
 			PositionCamera();
+			airplane.AddComponent<ConstantForce>().force = new Vector3(0, -20, 0);
 		}
+		
 	}
 	
 	// Update is called once per frame
