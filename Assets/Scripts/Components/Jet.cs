@@ -12,7 +12,7 @@ public class Jet : AirplaneComponent {
 	
 	// Update is called once per frame
 	protected override void SimUpdate () {
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKey(KeyCode.W))
 		{
 			Bounds combinedBounds = new Bounds(transform.position, Vector3.zero);
 			foreach (Renderer r in GetComponentsInChildren<Renderer>())
