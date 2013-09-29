@@ -27,6 +27,7 @@ public class PlayerControl : MonoBehaviour
 			airplane = GameObject.Find("Airplane");
 			airplane.rigidbody.useGravity = true;
 			airplane.transform.position = spawnPoint.transform.position;
+			airplane.transform.eulerAngles = spawnPoint.transform.eulerAngles;
 			Camera.main.transform.parent = airplane.transform;
 			PositionCamera();
 		}
