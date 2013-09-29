@@ -9,6 +9,9 @@ public class PlayerControl : MonoBehaviour
 	{
 		Camera mainCamera = Camera.main;
 		mainCamera.transform.localPosition = new Vector3(0, 2, -10);
+		Vector3 position = mainCamera.transform.position;
+		position.y = Mathf.Max(position.y, 5);
+		mainCamera.transform.position = position;
 		mainCamera.transform.LookAt(airplane.transform);
 	}
 	
@@ -29,13 +32,13 @@ public class PlayerControl : MonoBehaviour
 			airplane.transform.position = spawnPoint.transform.position;
 			airplane.transform.eulerAngles = spawnPoint.transform.eulerAngles;
 			Camera.main.transform.parent = airplane.transform;
-			PositionCamera();
 		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		PositionCamera();
 	}
 }
 
