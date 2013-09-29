@@ -15,10 +15,16 @@ public class AirplaneDrunkenness : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		randomVect = Random.onUnitSphere;
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(!Core.SimulationMode) { return; }
+		if(Core.SimulationMode && !GetComponent<Camera>().enabled) {
+			//Camera.main.enabled = false;
+			GetComponent<Camera>().enabled = true;
+		}		
 		if(randomVectTimer <= 0) {
 			randomVect = Random.onUnitSphere;	
 			randomVectTimer = Random.Range(0.2f, 0.8f);
@@ -42,15 +48,12 @@ public class AirplaneDrunkenness : MonoBehaviour {
 		
 		Camera.main.transform.RotateAround(Camera.main.transform.position, randomVect, Time.deltaTime * 0.5f * drunkenness);
 		
-		Vector3 camForward = GameObject.Find("Airplane").transform.forward;
+		Vector3 camForward = GameObject.Find("Airplane").transform.position - Camera.main.transform.position;
 			
-		Camera.main.transform.localRotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.LookRotation(camForward, Vector3.up), 0.05f);
+		GameObject plane = GameObject.Find("Airplane");
+		
+		//Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.LookRotation(camForward, Vector3.up), 0.05f);
+		//Camera.main.transform.LookAt(plane.transform.position + plane.transform.forward * 10);
 		randomVectTimer -= Time.deltaTime;
-	}
-	
-	void OnGUI() {
-		if(GUI.Button(new Rect(Screen.width / 2 - 60, 20, 120, 50), "DRINK!")) {
-			drunkenness += 0.25f;	
-		}
 	}
 }

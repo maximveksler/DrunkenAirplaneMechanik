@@ -48,11 +48,11 @@ public class Stabilizer : AirplaneComponent {
 		//Debug.Log(GetAirplane().rigidbody.angularVelocity.x);
 		
 		if (Input.GetKey (KeyCode.DownArrow))
-			aileronAngle+= 5;
+			aileronAngle+= 50 * Time.deltaTime;
 		if (Input.GetKey (KeyCode.UpArrow))
-			aileronAngle-= 5;
+			aileronAngle-= 50 * Time.deltaTime;
 		
-		aileronAngle *= 0.9f;
+		aileronAngle *= 0.96f;
 		aileronAngle = Mathf.Clamp(aileronAngle, -45, 45);
 		
 		float speed = Vector3.Dot(GetAirplane().rigidbody.velocity, -transform.right);
