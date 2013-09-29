@@ -10,7 +10,7 @@ public class ConstructionDrunkenness : MonoBehaviour {
 	Vector3 randomVect = Vector3.one;
 	float randomVectTimer = 0.0f;
 	
-	float drunkenness = 0.75f;
+	float drunkenness = 0;
 	
 	// Use this for initialization
 	void Start () {
