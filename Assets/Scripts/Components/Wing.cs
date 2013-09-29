@@ -14,6 +14,7 @@ public class Wing : AirplaneComponent {
 		    combinedBounds.Encapsulate(r.bounds);
 		}		
 		GetAirplane().rigidbody.AddForceAtPosition(transform.up * lift * (flip ? -1 : 1), combinedBounds.center);
+		Debug.DrawLine(combinedBounds.center, combinedBounds.center + (transform.up * lift * (flip ? -1 : 1)), new Color(0,1,0,1));
 		Debug.Log(lift);
 	}
 }
