@@ -33,7 +33,7 @@ public class ConstructionControls : MonoBehaviour {
 		Vector3 offset = Input.mousePosition - drunkMouse;
 		float dist = offset.magnitude;
 		offset.Normalize();
-		drunkMouse += offset * dist * 9 * Time.deltaTime;
+		drunkMouse += offset * dist * 7 * Time.deltaTime;
 		drunkMouse.x += Mathf.Sin(Time.time) * 2;
 		drunkMouse.y += Mathf.Cos(Time.time) * 2;
 		
