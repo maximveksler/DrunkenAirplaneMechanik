@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ConstructionDrunkenness : MonoBehaviour {
+public class AirplaneDrunkenness : MonoBehaviour {
 	
 	float stumbleBlurMax = 0;
 	float stumbleCountdown = 0;
@@ -42,9 +42,9 @@ public class ConstructionDrunkenness : MonoBehaviour {
 		
 		Camera.main.transform.RotateAround(Camera.main.transform.position, randomVect, Time.deltaTime * 0.5f * drunkenness);
 		
-		Vector3 camForward = GameObject.Find("Airplane").transform.position - Camera.main.transform.position;
+		Vector3 camForward = GameObject.Find("Airplane").transform.forward;
 			
-		Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.LookRotation(camForward, Vector3.up), 0.05f);
+		Camera.main.transform.localRotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.LookRotation(camForward, Vector3.up), 0.05f);
 		randomVectTimer -= Time.deltaTime;
 	}
 	

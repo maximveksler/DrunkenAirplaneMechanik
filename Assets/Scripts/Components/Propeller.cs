@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
  
-public class Propeller_script : MonoBehaviour {
+public class Propeller_script : AirplaneComponent {
  public float thrustFactor = 10000.0f;
 	public float positionalThrustness = 0.1f;
 

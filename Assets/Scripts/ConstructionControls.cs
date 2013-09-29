@@ -7,7 +7,7 @@ public class ConstructionControls : MonoBehaviour {
 	float camTargetYaw = 1;
 	float camPitch = -.5f;
 	float camTargetPitch = -0.5f;
-	float camDistance = 10;
+	float camDistance = 7;
 	
 	Vector3 targetCameraPos;
 	
@@ -33,7 +33,7 @@ public class ConstructionControls : MonoBehaviour {
 		Vector3 offset = Input.mousePosition - drunkMouse;
 		float dist = offset.magnitude;
 		offset.Normalize();
-		drunkMouse += offset * dist * 7 * Time.deltaTime;
+		drunkMouse += offset * dist * 10 * Time.deltaTime;
 		drunkMouse.x += Mathf.Sin(Time.time) * 2;
 		drunkMouse.y += Mathf.Cos(Time.time) * 2;
 		
