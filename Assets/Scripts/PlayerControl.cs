@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
 			airplane.rigidbody.useGravity = true;
 			airplane.transform.position = spawnPoint.transform.position;
 			airplane.transform.eulerAngles = spawnPoint.transform.eulerAngles;
-			airplane.AddComponent<ConstantForce>().force = new Vector3(0, -20, 0);
+			//airplane.AddComponent<ConstantForce>().force = new Vector3(0, -20, 0);
 			Camera.main.transform.parent = airplane.transform;
 			PositionCamera();
 		}
